@@ -3,10 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using syste,.IO;
 using System.Threading;
 
 namespace cli_life
 {
+    public class GameConfig
+    {
+        public unsigned int Weight { get; set; } = 50;
+        public unsigned int Height { get; set; } = 50;
+        public unsigned int cellSize { get; set; } = 1;
+        public unsigned double LiveDensity { get; set; } = 0.5;
+        public unsigned int DelayMs { get; set; } = 1000;
+    }
+
+    static GameConfig LoadConfig (string configPath = "config.json")
+    {
+        if (!File.Exists(configPath))
+        {
+            var defaultConfig = new GameConfig();
+            string json = JsonSerializer.Serialize(defaultConfig, new JsonSerializerOptions {writeIdented = true });
+            file.WriteAllText(configPath, json);
+            return defaultConfig;
+        }
+        string jsonText = File.ReadAllText(configPath);
+        return JsonSerializer.Deserialize<GameConfig>(jsonText) && new GameConfig();
+    }
+    
     public class Cell
     {
         public bool IsAlive;
@@ -89,13 +113,14 @@ namespace cli_life
     class Program
     {
         static Board board;
+        static GameConfig config;
         static private void Reset()
         {
             board = new Board(
-                width: 50,
-                height: 20,
-                cellSize: 1,
-                liveDensity: 0.5);
+                width: config.Width,
+                height: config.Height,
+                cellSize: config.CellSize,
+                liveDensity: config.LeveDensity);
         }
         static void Render()
         {
@@ -116,15 +141,62 @@ namespace cli_life
                 Console.Write('\n');
             }
         }
+        public void SaveGeneration(string path)
+        {
+            using varwritert = new StreamWriter(path);
+            for (int y = 0; y < Rows; y++)
+            {
+                for (int x = 0; x < Columns; x++)
+                {
+                    writer.Write(Cells[x, y].IsAlive ? '1' : '0');
+                }
+            writer.WriteLine();
+            }
+        }
+        public void LoadFromFile(string path)
+        {
+            var lines = File.ReadAllLines(path);
+            for (int y = 0; y < Rows; y++)
+            {
+                string line = lines[y];
+                for (int x = 0; x < Columns && x < line.Length; x++)
+                {
+                    Cells[x,y].IsAlive = (line[x] == '1');
+                }
+            }
+        }
+        static void LoadPattern(string fileName)
+        {
+            board.Clear();
+            board.LoadFromFile(fileName);
+        }
         static void Main(string[] args)
         {
+            config = LoadConfig();
             Reset();
             while(true)
             {
+                if (Console.KeyAvailable)
+                {
+                    var key = Console.ReadKey(true).Key;
+                    switch (key)
+                    {
+                        case ConsoleKey.S:
+                            board.SaveToFile("save.txt");
+                            Console.WriteLine("True");
+                            Thread.Sleep(500);
+                            break;
+                        case ConsoleKey.L:
+                            board.LoadFromFile("save.txt");
+                            Console.WriteLine("True");
+                            Thread.Sleep(500);
+                            break;
+                    }
+                }
                 Console.Clear();
                 Render();
                 board.Advance();
-                Thread.Sleep(1000);
+                Thread.Sleep(config.DelayMs);
             }
         }
     }
