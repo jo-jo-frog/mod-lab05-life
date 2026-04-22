@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Livegame/Livegame.csproj" />
+  <Project Path="LiveTests/LiveTests.csproj" />
+</Solution>

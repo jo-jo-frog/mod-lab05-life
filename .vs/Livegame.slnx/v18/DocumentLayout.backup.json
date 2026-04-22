@@ -1,0 +1,59 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\Livegame\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9ACB388D-7E33-1AA5-4D1E-94AD2BC9C520}|Livegame\\Livegame.csproj|c:\\users\\pc\\source\\repos\\livegame\\livegame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9ACB388D-7E33-1AA5-4D1E-94AD2BC9C520}|Livegame\\Livegame.csproj|solutionrelative:livegame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B611D06-627D-4FAB-2DBD-96DF648ADADC}|LiveTests\\LiveTests.csproj|c:\\users\\pc\\source\\repos\\livegame\\livetests\\lifetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B611D06-627D-4FAB-2DBD-96DF648ADADC}|LiveTests\\LiveTests.csproj|solutionrelative:livetests\\lifetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 114,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Livegame\\Livegame\\Program.cs",
+              "RelativeDocumentMoniker": "Livegame\\Program.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Livegame\\Livegame\\Program.cs",
+              "RelativeToolTip": "Livegame\\Program.cs",
+              "ViewState": "AgIAAOwBAAAAAAAAAAAAAP8BAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T12:42:44.827Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LifeTest.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Livegame\\LiveTests\\LifeTest.cs",
+              "RelativeDocumentMoniker": "LiveTests\\LifeTest.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Livegame\\LiveTests\\LifeTest.cs",
+              "RelativeToolTip": "LiveTests\\LifeTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T11:34:53.506Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

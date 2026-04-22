@@ -1,0 +1,7 @@
+{
+  "Wight": 50,
+  "Height": 50,
+  "CellSize": 1,
+  "LiveDensity": 0.5,
+  "DelayMs": 1000
+}
