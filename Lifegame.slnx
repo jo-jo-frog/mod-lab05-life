@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Lifegame/Lifegame.csproj" />
+  <Project Path="LifeTests/LifeTests.csproj" />
+</Solution>
