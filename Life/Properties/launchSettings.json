@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Life": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\PC\\source\\repos\\Livegame\\mod-lab05-life"
+    }
+  }
+}

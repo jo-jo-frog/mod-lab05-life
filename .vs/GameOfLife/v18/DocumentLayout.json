@@ -1,0 +1,74 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\Livegame\\mod-lab05-life\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{553EF050-2D6A-4BFA-9E64-165BEBEF9B01}|Life\\Life.csproj|c:\\users\\pc\\source\\repos\\livegame\\mod-lab05-life\\life\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{553EF050-2D6A-4BFA-9E64-165BEBEF9B01}|Life\\Life.csproj|solutionrelative:life\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{553EF050-2D6A-4BFA-9E64-165BEBEF9B01}|Life\\Life.csproj|c:\\users\\pc\\source\\repos\\livegame\\mod-lab05-life\\life\\life.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{553EF050-2D6A-4BFA-9E64-165BEBEF9B01}|Life\\Life.csproj|solutionrelative:life\\life.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{66B69FEE-BE7A-43BC-9DC4-8F9BCFD78B9C}|LifeTest\\LifeTest.csproj|c:\\users\\pc\\source\\repos\\livegame\\mod-lab05-life\\lifetest\\lifetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{66B69FEE-BE7A-43BC-9DC4-8F9BCFD78B9C}|LifeTest\\LifeTest.csproj|solutionrelative:lifetest\\lifetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Life",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Livegame\\mod-lab05-life\\Life\\Life.csproj",
+              "RelativeDocumentMoniker": "Life\\Life.csproj",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Livegame\\mod-lab05-life\\Life\\Life.csproj",
+              "RelativeToolTip": "Life\\Life.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-29T20:01:24.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Livegame\\mod-lab05-life\\Life\\Program.cs",
+              "RelativeDocumentMoniker": "Life\\Program.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Livegame\\mod-lab05-life\\Life\\Program.cs",
+              "RelativeToolTip": "Life\\Program.cs",
+              "ViewState": "AgIAAOcAAAAAAAAAAAAewPMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T16:55:37.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LifeTest.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Livegame\\mod-lab05-life\\LifeTest\\LifeTest.cs",
+              "RelativeDocumentMoniker": "LifeTest\\LifeTest.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Livegame\\mod-lab05-life\\LifeTest\\LifeTest.cs",
+              "RelativeToolTip": "LifeTest\\LifeTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T19:29:16.994Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
