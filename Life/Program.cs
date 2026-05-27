@@ -12,7 +12,7 @@ namespace cli_life
 {
     public class GameConfig
     {
-        public int Wight { get; set; } = 50;
+        public int Width { get; set; } = 50;
         public int Height { get; set; } = 50;
         public int CellSize { get; set; } = 1;
         public double LiveDensity { get; set; } = 0.5;
@@ -324,7 +324,7 @@ namespace cli_life
         static private void Reset()
         {
             board = new Board(
-                width: config.Wight,
+                width: config.Width,
                 height: config.Height,
                 cellSize: config.CellSize,
                 liveDensity: config.LiveDensity);
