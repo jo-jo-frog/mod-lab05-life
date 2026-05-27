@@ -381,10 +381,15 @@ namespace cli_life
             double[] densities = { 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5 };
             int attemptsPerDensity = 20;
             var results = new List<(double density, double avgGenerations)>();
-
-            using var sw = new StreamWriter("Data/data.txt");
+        
+            string dataDir = "Data";
+            if (!Directory.Exists(dataDir)) Directory.CreateDirectory(dataDir);
+            string dataPath = Path.Combine(dataDir, "data.txt");
+            string plotPath = Path.Combine(dataDir, "plot.png");
+        
+            using var sw = new StreamWriter(dataPath);
             sw.WriteLine("Density\tAvgGenerations");
-
+        
             foreach (double d in densities)
             {
                 Console.WriteLine($"Testing density {d}...");
@@ -392,15 +397,14 @@ namespace cli_life
                 for (int i = 0; i < attemptsPerDensity; i++)
                 {
                     int stableGen = SimulateUntilStable(d);
-                    if (stableGen > 0)
-                        gens.Add(stableGen);
+                    gens.Add(stableGen);
                 }
-                double avg = gens.Count > 0 ? gens.Average() : 0;
+                double avg = gens.Average();
                 results.Add((d, avg));
                 sw.WriteLine($"{d}\t{avg}");
                 Console.WriteLine($"  Average: {avg:F1} generations");
             }
-
+        
             var plt = new ScottPlot.Plot();
             double[] x = results.Select(r => r.density).ToArray();
             double[] y = results.Select(r => r.avgGenerations).ToArray();
@@ -408,38 +412,28 @@ namespace cli_life
             plt.Title("Переход в стабильную фазу");
             plt.XLabel("Плотность заполнения");
             plt.YLabel("Среднее число поколений до стабилизации");
-            plt.SavePng("Data/plot.png", 800, 600);
+            plt.SavePng(plotPath, 800, 600);
         }
 
-        static int SimulateUntilStable(double density, int stableWindow = 5)
+        static int SimulateUntilStable(double density, int stableWindow = 10, int maxGenerations = 2000)
         {
             var simBoard = new Board(50, 50, 1, density);
-            var history = new Queue<int>();
+            int prevCount = simBoard.CountAlive();
+            int stableCount = 0;
             int generation = 0;
-            int lastStableGen = -1;
-
-            while (true)
+            for (generation = 0; generation < maxGenerations; generation++)
             {
-                int alive = simBoard.CountAlive();
-                history.Enqueue(alive);
-                if (history.Count > stableWindow)
-                    history.Dequeue();
-
-                if (history.Count == stableWindow && history.Distinct().Count() == 1)
-                {
-                    lastStableGen = generation - stableWindow + 1;
-                    break;
-                }
-
                 simBoard.Advance();
-                generation++;
-                if (generation > 10000)
-                {
-                    lastStableGen = -1;
+                int curCount = simBoard.CountAlive();
+                if (curCount == prevCount)
+                    stableCount++;
+                else
+                    stableCount = 0;
+                prevCount = curCount;
+                if (stableCount >= stableWindow)
                     break;
-                }
             }
-            return lastStableGen;
+            return generation;
         }
 
         static GameConfig LoadConfig()
