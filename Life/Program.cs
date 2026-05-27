@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Formats.Tar;
 using System.IO;
@@ -473,38 +473,55 @@ namespace cli_life
                         case ConsoleKey.S:
                             board.SaveGenerationToFile("save.txt");
                             Console.WriteLine("True");
+                            Console.ReadKey();
                             Thread.Sleep(500);
                             break;
                         case ConsoleKey.L:
                             board.LoadGenerationFromFile("save.txt");
                             Console.WriteLine("True");
+                            Console.ReadKey();
                             Thread.Sleep(500);
                             break;
                         case ConsoleKey.F1:
                             LoadPattern("Block.txt");
-                            Console.WriteLine("структура: устойчивая(блок)");
+                            Console.WriteLine("структура: устойчивая(блок)"); Console.ReadKey();
                             break;
                         case ConsoleKey.F2:
                             LoadPattern("Blinker.txt");
-                            Console.WriteLine("структура: периодическая(мигалка)");
+                            Console.WriteLine("структура: периодическая(мигалка)"); Console.ReadKey();
                             break;
                         case ConsoleKey.F3:
                             LoadPattern("Glider.txt");
-                            Console.WriteLine("структура: двигающаяся");
+                            Console.WriteLine("структура: двигающаяся"); Console.ReadKey();
                             break;
                         case ConsoleKey.F4:
                             LoadPattern("GliderEater.txt");
-                            Console.WriteLine("структура: пожиратель");
+                            Console.WriteLine("структура: пожиратель"); Console.ReadKey();
                             break;
                         case ConsoleKey.F5:
                             LoadPattern("Gun.txt");
-                            Console.WriteLine("структура: ружье");
+                            Console.WriteLine("структура: ружье"); Console.ReadKey();
                             break;
                         case ConsoleKey.F6: // в ходе экспериментов выяснилось, что поезд на поле 50*50 не работает(вырождается в блоки), нужно делать большеее поле и наблюдать за поведением
                             LoadPattern("Train.txt");
-                            Console.WriteLine("структура: поезд");
+                            Console.WriteLine("структура: поезд"); Console.ReadKey();
+                            break;
+                        case ConsoleKey.F7:
+                            LoadPattern("Beehive.txt");
+                            Console.WriteLine("Загружен улей (Beehive)");
+                            Console.ReadKey();
+                            break;
+                        case ConsoleKey.F8:
+                            LoadPattern("Boat.txt");
+                            Console.WriteLine("Загружена лодка (Boat)");
+                            Console.ReadKey();
                             break;
                         case ConsoleKey.F9:
+                            LoadPattern("Pool.txt");
+                            Console.WriteLine("Загружен пруд (Pool)");
+                            Console.ReadKey();
+                            break;
+                        case ConsoleKey.F10:
                             Console.Clear();
                             int alive = board.CountAlive();
                             int combos = board.CountCombinations();
@@ -521,7 +538,7 @@ namespace cli_life
                             Console.WriteLine("Нажмите любую клавишу...");
                             Console.ReadKey();
                             break;
-                        case ConsoleKey.F10:
+                        case ConsoleKey.F11:
                             Console.Clear();
                             Console.WriteLine("Запуск экспериментов по стабилизации...");
                             RunStabilityExperiments();
