@@ -310,13 +310,39 @@ namespace cli_life
             return norm;
         }
 
+        static HashSet<(int x, int y)> RotateShape(HashSet<(int x, int y)> shape, int rotationTimes)
+        {
+            var rotated = new HashSet<(int x, int y)>();
+            foreach (var (x, y) in shape)
+            {
+                int nx = x, ny = y;
+                for (int i = 0; i < rotationTimes; i++)
+                {
+                    int temp = nx;
+                    nx = ny;
+                    ny = -temp;
+                }
+                rotated.Add((nx, ny));
+            }
+            int minX = rotated.Min(p => p.x);
+            int minY = rotated.Min(p => p.y);
+            var norm = new HashSet<(int x, int y)>();
+            foreach (var (x, y) in rotated)
+                norm.Add((x - minX, y - minY));
+            return norm;
+        }
+
         static string ClassifyCombination(List<(int x, int y)> combo)
         {
             var norm = Normalize(combo);
             foreach (var (name, shape) in _shapes)
             {
-                if (norm.SetEquals(shape))
-                    return name;
+                for (int rot = 0; rot < 4; rot++)
+                {
+                    var rotatedShape = RotateShape(shape, rot);
+                    if (norm.SetEquals(rotatedShape))
+                        return name;
+                }
             }
             return "Unknown";
         }
