@@ -350,10 +350,10 @@ namespace cli_life
         static private void Reset()
         {
             board = new Board(
-                width: config.Width,
-                height: config.Height,
-                cellSize: config.CellSize,
-                liveDensity: config.LiveDensity);
+            width: config.Width,
+            height: config.Height,
+            cellSize: config.CellSize,
+            liveDensity: config.LiveDensity);
         }
 
         static void Render()
