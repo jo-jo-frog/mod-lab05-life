@@ -453,7 +453,7 @@ namespace cli_life
         static void LoadPattern(string fileName)
         {
             board.Clear();
-            fileName = Path.Combine("Data", fileName);
+            fileName = Path.Combine("patterns", fileName);
             board.LoadPatternAtCenter(fileName);
             Thread.Sleep(500);
         }
