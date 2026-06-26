@@ -17,6 +17,10 @@ namespace cli_life
         public int CellSize { get; set; } = 1;
         public double LiveDensity { get; set; } = 0.5;
         public int DelayMs { get; set; } = 1000;
+        public string PatternsPath { get; set; } = "patterns";
+        public int StableWindow { get; set; } = 10;
+        public int ExperimentWidth { get; set; } = 50;
+        public int ExperimentHeight { get; set; } = 50;
     }
 
     public class Cell
