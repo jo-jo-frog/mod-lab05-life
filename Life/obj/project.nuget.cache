@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2Vrnj9nUAtw=",
+  "dgSpecHash": "Bxmpu/rOBhY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\PC\\source\\repos\\Livegame\\mod-lab05-life\\Life\\Life.csproj",
+  "projectFilePath": "C:\\Users\\PC\\source\\repos\\mod-lab05-life\\Life\\Life.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\harfbuzzsharp\\8.3.1.1\\harfbuzzsharp.8.3.1.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\harfbuzzsharp.nativeassets.linux\\8.3.1.1\\harfbuzzsharp.nativeassets.linux.8.3.1.1.nupkg.sha512",

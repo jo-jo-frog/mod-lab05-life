@@ -385,12 +385,13 @@ namespace cli_life
             double[] densities = { 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5 };
             int attemptsPerDensity = 20;
             var results = new List<(double density, double avgGenerations)>();
-        
-            string dataDir = "Data";
+
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string dataDir = Path.Combine(baseDir, "Data");
             if (!Directory.Exists(dataDir)) Directory.CreateDirectory(dataDir);
             string dataPath = Path.Combine(dataDir, "data.txt");
             string plotPath = Path.Combine(dataDir, "plot.png");
-        
+
             using var sw = new StreamWriter(dataPath);
             sw.WriteLine("Density\tAvgGenerations");
         
@@ -421,7 +422,7 @@ namespace cli_life
 
         static int SimulateUntilStable(double density, int stableWindow = 10, int maxGenerations = 2000)
         {
-            var simBoard = new Board(50, 50, 1, density);
+            var simBoard = new Board(config.ExperimentWidth, config.ExperimentHeight, 1, density);
             int prevCount = simBoard.CountAlive();
             int stableCount = 0;
             int generation = 0;
@@ -457,8 +458,15 @@ namespace cli_life
         static void LoadPattern(string fileName)
         {
             board.Clear();
-            fileName = Path.Combine("patterns", fileName);
-            board.LoadPatternAtCenter(fileName);
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string fullPath = Path.Combine(baseDir, config.PatternsPath, fileName);
+            if (!File.Exists(fullPath))
+            {
+                Console.WriteLine($"Файл {fullPath} не найден!");
+                Console.ReadKey();
+                return;
+            }
+            board.LoadPatternAtCenter(fullPath);
             Thread.Sleep(500);
         }
 
@@ -475,16 +483,22 @@ namespace cli_life
                     switch (key)
                     {
                         case ConsoleKey.S:
-                            board.SaveGenerationToFile("save.txt");
-                            Console.WriteLine("True");
+                            string savePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.PatternsPath, "save.txt");
+                            board.SaveGenerationToFile(savePath);
+                            Console.WriteLine($"Сохранено в {savePath}");
                             Console.ReadKey();
-                            Thread.Sleep(500);
                             break;
                         case ConsoleKey.L:
-                            board.LoadGenerationFromFile("save.txt");
-                            Console.WriteLine("True");
+                            string loadPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config.PatternsPath, "save.txt");
+                            if (!File.Exists(loadPath))
+                            {
+                                Console.WriteLine("Файл save.txt не найден!");
+                                Console.ReadKey();
+                                break;
+                            }
+                            board.LoadGenerationFromFile(loadPath);
+                            Console.WriteLine($"Загружено из {loadPath}");
                             Console.ReadKey();
-                            Thread.Sleep(500);
                             break;
                         case ConsoleKey.F1:
                             LoadPattern("Block.txt");
@@ -542,7 +556,7 @@ namespace cli_life
                             Console.WriteLine("Нажмите любую клавишу...");
                             Console.ReadKey();
                             break;
-                        case ConsoleKey.F11:
+                        case ConsoleKey.E:
                             Console.Clear();
                             Console.WriteLine("Запуск экспериментов по стабилизации...");
                             RunStabilityExperiments();

@@ -203,5 +203,111 @@ namespace LifeTest
             string result = cli_life.Program.ClassifyShape(combo);
             Assert.Equal("Beehive", result);
         }
+
+        [Fact]
+        public void Classify_Boat_ReturnsBoat()
+        {
+            var combo = new List<(int, int)> { (0, 0), (1, 0), (0, 1), (2, 1), (1, 2) };
+            string result = cli_life.Program.ClassifyShape(combo);
+            Assert.Equal("Boat", result);
+        }
+
+        [Fact]
+        public void Classify_Pool_ReturnsPool()
+        {
+            var combo = new List<(int, int)> { (1, 0), (2, 0), (0, 1), (3, 1), (0, 2), (3, 2), (1, 3), (2, 3) };
+            string result = cli_life.Program.ClassifyShape(combo);
+            Assert.Equal("Pool", result);
+        }
+
+        [Fact]
+        public void Classify_Ship_ReturnsShip()
+        {
+            var combo = new List<(int, int)> { (0, 0), (1, 0), (2, 0), (0, 1), (2, 1), (2, 2) };
+            string result = cli_life.Program.ClassifyShape(combo);
+            Assert.Equal("Ship", result);
+        }
+
+        [Fact]
+        public void Classify_Loaf_ReturnsLoaf()
+        {
+            var combo = new List<(int, int)> { (1, 0), (2, 0), (0, 1), (3, 1), (1, 2), (3, 2), (2, 3) };
+            string result = cli_life.Program.ClassifyShape(combo);
+            Assert.Equal("Loaf", result);
+        }
+
+        [Fact]
+        public void Classify_UnknownShape_ReturnsUnknown()
+        {
+            var combo = new List<(int, int)> { (0, 0), (1, 0), (2, 0) };
+            string result = cli_life.Program.ClassifyShape(combo);
+            Assert.Equal("Unknown", result);
+        }
+
+        [Fact]
+        public void Block_RemainsStable()
+        {
+            var board = new Board(10, 10, 1, 0);
+            board.Cells[4, 4].IsAlive = board.Cells[5, 4].IsAlive = board.Cells[4, 5].IsAlive = board.Cells[5, 5].IsAlive = true;
+            var before = board.GetAliveCells();
+            board.Advance();
+            var after = board.GetAliveCells();
+            Assert.Equal(before.OrderBy(p => p), after.OrderBy(p => p));
+        }
+
+        [Fact]
+        public void Blinker_HasPeriod2()
+        {
+            var board = new Board(10, 10, 1, 0);
+            board.Cells[4, 4].IsAlive = board.Cells[5, 4].IsAlive = board.Cells[6, 4].IsAlive = true;
+            var state0 = board.GetAliveCells().OrderBy(p => p).ToList();
+            board.Advance();
+            var state1 = board.GetAliveCells().OrderBy(p => p).ToList();
+            board.Advance();
+            var state2 = board.GetAliveCells().OrderBy(p => p).ToList();
+            Assert.Equal(state0, state2);
+            Assert.NotEqual(state0, state1);
+        }
+
+        [Fact]
+        public void CountCombinations_WithTwoSeparateShapes_ReturnsTwo()
+        {
+            var board = new Board(20, 20, 1, 0);
+            board.Cells[4, 4] = board.Cells[5, 4] = board.Cells[4, 5] = board.Cells[5, 5] = new Cell { IsAlive = true };
+            board.Cells[14, 14] = board.Cells[15, 14] = board.Cells[14, 15] = board.Cells[16, 15] = board.Cells[15, 16] = new Cell { IsAlive = true };
+            Assert.Equal(2, board.CountCombinations());
+        }
+
+        [Fact]
+        public void GetAllCombinations_ClassifiesEachCombo()
+        {
+            var board = new Board(20, 20, 1, 0);
+            board.Cells[4, 4] = board.Cells[5, 4] = board.Cells[4, 5] = board.Cells[5, 5] = new Cell { IsAlive = true };
+            board.Cells[10, 0] = board.Cells[11, 0] = board.Cells[9, 1] = board.Cells[12, 1] = board.Cells[10, 2] = board.Cells[11, 2] = new Cell { IsAlive = true };
+            var combos = board.GetAllCombinations();
+            Assert.Equal(2, combos.Count);
+            var types = combos.Select(c => cli_life.Program.ClassifyShape(c)).ToList();
+            Assert.Contains("Block", types);
+            Assert.Contains("Beehive", types);
+        }
+
+        [Fact]
+        public void SimulateUntilStable_WithBlock_ReturnsZeroGenerations()
+        {
+            var config = new GameConfig { ExperimentWidth = 10, ExperimentHeight = 10, StableWindow = 2 };
+            var board = new Board(10, 10, 1, 0);
+            board.Cells[4, 4] = board.Cells[5, 4] = board.Cells[4, 5] = board.Cells[5, 5] = new Cell { IsAlive = true };
+            int stableCount = 0;
+            int prev = board.CountAlive();
+            for (int gen = 0; gen < 100; gen++)
+            {
+                board.Advance();
+                int cur = board.CountAlive();
+                if (cur == prev) stableCount++; else stableCount = 0;
+                if (stableCount >= 2) { Assert.Equal(gen, gen); break; }
+                prev = cur;
+            }
+            Assert.True(stableCount >= 2);
+        }
     }
 }
